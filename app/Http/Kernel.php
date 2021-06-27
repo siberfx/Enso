@@ -7,9 +7,11 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
     protected $middleware = [
+        \LaravelEnso\Core\Http\Middleware\AuthorizationCookie::class,
+        // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
-        \App\Http\Middleware\CheckForMaintenanceMode::class,
+        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
@@ -24,12 +26,13 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \LaravelEnso\ControlPanelApi\App\Http\Middleware\RequestMonitor::class,
+            \LaravelEnso\ControlPanelApi\Http\Middleware\RequestMonitor::class,
         ],
 
         'api' => [
-            'throttle:60,1',
+            \LaravelEnso\Core\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'throttle:api',
         ],
     ];
 
@@ -54,6 +57,6 @@ class Kernel extends HttpKernel
         // \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
-        \LaravelEnso\ControlPanelApi\App\Http\Middleware\RequestMonitor::class,
+        \LaravelEnso\ControlPanelApi\Http\Middleware\RequestMonitor::class,
     ];
 }

@@ -1,22 +1,21 @@
 import Vue from 'vue';
-
-import '@core/modules';
-
-import App from '@enso-ui/ui/bulma';
 import { sync } from 'vuex-router-sync';
-import store from './store';
-import router from './router';
-
+import Root from '@enso-ui/ui/src/bulma/Root.vue';
+import App from '@enso-ui/ui/src/core/app';
+import router from '@enso-ui/ui/src/core/services/router';
+import store from '@enso-ui/ui/src/core/services/store';
+import '@enso-ui/ui/src/modules';
 import './app';
-
 import '../sass/enso.scss';
-
-sync(store, router);
 
 Vue.config.productionTip = false;
 
-new Vue({
+sync(store, router);
+
+const vm = new Vue({
     router,
     store,
-    ...App,
+    ...Root,
 }).$mount('#app');
+
+App.boot(vm);

@@ -14,6 +14,7 @@
 
 **Hit the ground running when building your new Laravel SPA project with boilerplate and extra functionality out of the box!**
 
+
 &nbsp;
 
 [![Watch the demo](https://laravel-enso.github.io/enso/screenshots/bulma_cap000_thumb.png)](https://laravel-enso.github.io/enso/videos/bulma_quick_walkthrough.webm)
@@ -23,8 +24,6 @@
 ### Important
 
 If you are using this project please consult the **[changelog](https://github.com/laravel-enso/Enso/blob/master/CHANGELOG.md)** on every update.
-
-For the v1.x / adminlte version, take a look at the **[adminlte](https://github.com/laravel-enso/Enso/tree/adminlte)** branch.
 
 ### Official Documentation
 
